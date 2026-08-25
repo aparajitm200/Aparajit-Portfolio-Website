@@ -1,0 +1,223 @@
+// ─────────────────────────────────────────────
+//  Portfolio Data — Future Categories
+//  Categories with placeholder data, thumbnails,
+//  and video iframe support.
+// ─────────────────────────────────────────────
+
+import type { PortfolioCategory } from '../../types/portfolio'
+
+export const uiuxCategory: PortfolioCategory = {
+  slug: 'ui-ux',
+  title: 'UI/UX',
+  displayTitle: 'UI/UX Design',
+  description:
+    'Interface design, user experience, and product design — from wireframes to polished high-fidelity prototypes.',
+  shortDescription: 'Interface design & user experience',
+  comingSoon: false,
+  projects: [
+    {
+      slug: 'fintech-dashboard',
+      title: 'Fintech Dashboard',
+      subtitle: 'UX Research & UI Design',
+      type: 'Product Design',
+      description: 'A comprehensive financial dashboard designed for modern wealth management.',
+      shortDescription: 'Financial dashboard UX/UI',
+      heroImage: 'images/uiux/img-1.jpg',
+      thumbnailImage: 'images/uiux/img-1.jpg',
+      year: 2024,
+      tags: ['UI', 'UX', 'Fintech'],
+    },
+    {
+      slug: 'ecommerce-app',
+      title: 'Retail Commerce App',
+      subtitle: 'Mobile App Design',
+      type: 'Mobile UI',
+      description: 'A sleek, conversion-optimized mobile app for an e-commerce fashion brand.',
+      shortDescription: 'Fashion e-commerce mobile app',
+      heroImage: 'images/uiux/img-2.jpg',
+      thumbnailImage: 'images/uiux/img-2.jpg',
+      year: 2024,
+      tags: ['Mobile', 'App Design', 'Retail'],
+    },
+    {
+      slug: 'saas-platform',
+      title: 'SaaS Platform Redesign',
+      subtitle: 'Enterprise UX',
+      type: 'Web Application',
+      description: 'Redesigning a complex B2B SaaS platform for improved usability and workflow efficiency.',
+      shortDescription: 'Enterprise SaaS platform UX redesign',
+      heroImage: 'images/uiux/img-3.jpg',
+      thumbnailImage: 'images/uiux/img-3.jpg',
+      year: 2023,
+      tags: ['SaaS', 'B2B', 'UX Research'],
+    },
+    {
+      slug: 'health-tracker',
+      title: 'Health & Wellness Tracker',
+      subtitle: 'Concept Design',
+      type: 'Concept UI',
+      description: 'An exploration into gamified health tracking interfaces.',
+      shortDescription: 'Gamified wellness tracker concept',
+      heroImage: 'images/uiux/img-4.jpg',
+      thumbnailImage: 'images/uiux/img-4.jpg',
+      year: 2023,
+      tags: ['Concept', 'Health', 'Gamification'],
+    },
+  ],
+}
+
+export const videoEditingCategory: PortfolioCategory = {
+  slug: 'video-editing',
+  title: 'Video Editing',
+  displayTitle: 'Video Post-Production',
+  description:
+    'Cinematic video editing, colour grading, and post-production work across brand films and short-form content.',
+  shortDescription: 'Video editing & post-production',
+  comingSoon: false,
+  projects: [
+    {
+      slug: 'brand-anthem',
+      title: 'Brand Anthem Film',
+      subtitle: 'Editing & Colour Grading',
+      type: 'Commercial Film',
+      description: 'A fast-paced brand anthem film edited to build excitement and showcase brand values.',
+      shortDescription: 'High-energy brand anthem film',
+      thumbnailImage: 'images/video/img-1.jpg',
+      embedUrl: 'https://www.youtube.com/embed/ScMzIvxBSi4?si=rX8QYxHw7T6n3K_k', // Placeholder youtube embed
+      year: 2024,
+      tags: ['Editing', 'Color Grading', 'Commercial'],
+    },
+    {
+      slug: 'documentary-short',
+      title: 'The Craftsman — Docu Short',
+      subtitle: 'Narrative Edit',
+      type: 'Documentary',
+      description: 'A 5-minute documentary short focusing on the process of traditional woodworking.',
+      shortDescription: 'Narrative documentary short edit',
+      thumbnailImage: 'images/video/img-2.jpg',
+      embedUrl: 'https://www.youtube.com/embed/LXb3EKWsInQ?si=7qN4p1r1r5e8n2_w', // Placeholder
+      year: 2023,
+      tags: ['Narrative', 'Documentary', 'Sound Design'],
+    },
+    {
+      slug: 'social-campaign',
+      title: 'Summer Collection Reels',
+      subtitle: 'Short Form Content',
+      type: 'Social Media',
+      description: 'A series of snappy, trend-driven edits for a summer clothing campaign on Instagram Reels.',
+      shortDescription: 'Trend-driven social media reels',
+      thumbnailImage: 'images/video/img-3.jpg',
+      embedUrl: 'https://www.youtube.com/embed/tgbNymZ7vqY', // Placeholder
+      year: 2024,
+      tags: ['Reels', 'Social Media', 'Fast-paced'],
+    },
+  ],
+}
+
+export const animationCategory: PortfolioCategory = {
+  slug: 'animation',
+  title: 'Animation',
+  displayTitle: 'Motion & Animation',
+  description:
+    'Motion graphics, 2D animation, and animated brand assets that bring static design systems to life.',
+  shortDescription: 'Motion graphics & animation',
+  comingSoon: false,
+  projects: [
+    {
+      slug: 'logo-reveals',
+      title: 'Dynamic Logo Reveals',
+      subtitle: 'Motion Graphics',
+      type: 'Brand Motion',
+      description: 'A collection of sleek, dynamic logo animations crafted for tech startups.',
+      shortDescription: 'Dynamic brand logo animations',
+      thumbnailImage: 'images/motion/img-1.jpg',
+      embedUrl: 'https://www.youtube.com/embed/aqz-KE-bpKQ?si=Z2Kq_L5w6M7N8O9P',
+      year: 2024,
+      tags: ['Logo Animation', 'After Effects', 'Branding'],
+    },
+    {
+      slug: 'explainer-video',
+      title: 'Product Explainer',
+      subtitle: '2D Animation',
+      type: 'Explainer Video',
+      description: 'A fully animated 2D explainer video breaking down complex software architecture.',
+      shortDescription: '2D animated product explainer',
+      thumbnailImage: 'images/motion/img-2.jpg',
+      embedUrl: 'https://www.youtube.com/embed/M7lc1UVf-VE?si=A9B8C7D6E5F4G3H2',
+      year: 2023,
+      tags: ['2D Animation', 'Explainer', 'Illustration'],
+    },
+    {
+      slug: 'ui-interactions',
+      title: 'UI Micro-Interactions',
+      subtitle: 'Prototyping & Motion',
+      type: 'UI Animation',
+      description: 'High-fidelity UI animations demonstrating complex user flows and states.',
+      shortDescription: 'High-fidelity interface animations',
+      thumbnailImage: 'images/motion/img-3.jpg',
+      embedUrl: 'https://www.youtube.com/embed/bHQqvYy5KYo?si=1A2B3C4D5E6F7G8H',
+      year: 2024,
+      tags: ['UI Motion', 'Prototyping', 'Interaction'],
+    },
+  ],
+}
+
+export const otherCategory: PortfolioCategory = {
+  slug: 'other',
+  title: 'Other',
+  displayTitle: 'Explorations',
+  description:
+    'Explorations, personal projects, experimental work, and cross-disciplinary design that does not fit neatly into a single category.',
+  shortDescription: 'Explorations & miscellaneous work',
+  comingSoon: false,
+  projects: [
+    {
+      slug: '3d-experiments',
+      title: 'Abstract 3D Forms',
+      subtitle: 'Cinema 4D / Blender',
+      type: '3D Art',
+      description: 'A series of experimental 3D renders exploring lighting and texture.',
+      shortDescription: 'Experimental 3D form renders',
+      heroImage: 'images/other/img-1.jpg',
+      thumbnailImage: 'images/other/img-1.jpg',
+      year: 2024,
+      tags: ['3D', 'Abstract', 'Rendering'],
+    },
+    {
+      slug: 'poster-series',
+      title: 'Typographic Posters',
+      subtitle: 'Print Design',
+      type: 'Typography',
+      description: 'A personal series of posters exploring experimental typography and grid systems.',
+      shortDescription: 'Experimental typography posters',
+      heroImage: 'images/other/img-2.jpg',
+      thumbnailImage: 'images/other/img-2.jpg',
+      year: 2023,
+      tags: ['Print', 'Typography', 'Grid'],
+    },
+    {
+      slug: 'generative-art',
+      title: 'Generative Patterns',
+      subtitle: 'Creative Coding',
+      type: 'Generative Art',
+      description: 'Using code to generate algorithmic, scalable vector patterns.',
+      shortDescription: 'Algorithmic generated patterns',
+      heroImage: 'images/other/img-3.jpg',
+      thumbnailImage: 'images/other/img-3.jpg',
+      year: 2024,
+      tags: ['Creative Coding', 'Generative', 'Processing'],
+    },
+    {
+      slug: 'photography',
+      title: 'Street Photography',
+      subtitle: 'Personal Archive',
+      type: 'Photography',
+      description: 'A curated selection of 35mm film street photography taken across Tokyo.',
+      shortDescription: '35mm street photography archive',
+      heroImage: 'images/other/img-4.jpg',
+      thumbnailImage: 'images/other/img-4.jpg',
+      year: 2023,
+      tags: ['Photography', '35mm', 'Street'],
+    },
+  ],
+}

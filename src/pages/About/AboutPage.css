@@ -1,0 +1,214 @@
+/* ─────────────────────────────────────────────
+   About Page Styles
+   ───────────────────────────────────────────── */
+
+.about-page {
+  padding-top: calc(var(--space-24) + 64px);
+  padding-bottom: var(--space-32);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--space-20), 10vw, var(--space-40));
+}
+
+.about-label {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  display: block;
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+/* ── Intro Section ───────────────────────────── */
+.about-intro__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-12);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-4);
+}
+
+.about-cv-link {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--dur-fast) ease;
+}
+
+.about-cv-link:hover {
+  color: var(--color-accent);
+}
+
+.about-intro__text {
+  max-width: 24ch;
+  line-height: 1.1;
+  margin-bottom: var(--space-20);
+}
+
+.about-intro__sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  padding-top: var(--space-12);
+  border-top: 1px solid var(--color-border);
+}
+
+.about-intro__sub {
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  max-width: 48ch;
+}
+
+/* ── Skills Section ──────────────────────────── */
+.about-skills {
+  background: var(--color-bg-elevated);
+  padding: var(--space-24) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about-skills .about-label {
+  margin-bottom: var(--space-12);
+}
+
+.about-skills__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.about-skill {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1;
+  color: var(--color-text);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: var(--space-4);
+  transition: color var(--dur-moderate) ease, transform var(--dur-moderate) ease;
+  cursor: default;
+}
+
+.about-skill:hover {
+  color: var(--color-accent);
+  transform: translateX(20px);
+}
+
+/* ── FAQs Section ────────────────────────────── */
+.about-faqs__grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--space-12);
+}
+
+.faq-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-item {
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-item:first-child {
+  padding-top: 0;
+}
+
+.faq-item__q {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.2;
+  color: var(--color-text-subtle);
+  transition: color var(--dur-fast) ease;
+  cursor: pointer;
+}
+
+.faq-item:hover .faq-item__q {
+  color: var(--color-text);
+}
+
+.faq-item__a-wrapper {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.faq-item__a {
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Contact CTA Section ─────────────────────── */
+.about-cta__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.about-cta__title {
+  max-width: 20ch;
+  line-height: 1.1;
+  margin-bottom: var(--space-12);
+}
+
+.about-cta__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.cta-link {
+  color: var(--color-text);
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-8);
+  border-radius: 9999px;
+  transition: all var(--dur-moderate) ease;
+}
+
+.cta-link:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-color: var(--color-text);
+}
+
+.about-cta__footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-12);
+  padding-top: var(--space-12);
+  border-top: 1px solid var(--color-border);
+}
+
+.about-cta__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 768px) {
+  .about-intro__sub-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .about-faqs__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-cta__links {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .cta-link {
+    text-align: center;
+  }
+}

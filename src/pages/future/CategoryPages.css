@@ -1,0 +1,208 @@
+/* ─────────────────────────────────────────────
+   Generic Category Page Styles
+   Used for UI/UX, Video Editing, Animation, Other
+   ───────────────────────────────────────────── */
+
+/* ── Page Hero ───────────────────────────────── */
+.cat-page {
+  padding-top: calc(var(--space-20) + 64px);
+  padding-bottom: var(--space-24);
+}
+
+.cat-hero {
+  margin-bottom: var(--space-20);
+}
+
+.cat-hero__meta {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.cat-hero__title {
+  margin-bottom: var(--space-6);
+}
+
+.cat-hero__desc {
+  color: var(--color-text-muted);
+  max-width: 56ch;
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Standard Grid (Editorial Masonry) ───────── */
+.cat-grid--standard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(var(--space-6), 3vw, var(--space-10));
+  align-items: start;
+}
+
+/* Every 2nd card in middle column drops down */
+.cat-card--offset {
+  margin-top: var(--space-16);
+}
+
+/* ── Standard Card ───────────────────────────── */
+.cat-card__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.cat-card__image-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  background: var(--color-bg-elevated);
+}
+
+.cat-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform var(--dur-slow) var(--ease-out-expo);
+}
+
+.cat-card__link:hover .cat-card__image {
+  transform: scale(1.04);
+}
+
+/* Hover overlay */
+.cat-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 12, 11, 0.55);
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-5);
+  opacity: 0;
+  transition: opacity var(--dur-moderate) var(--ease-out-expo);
+  border-radius: var(--radius-md);
+}
+
+.cat-card__link:hover .cat-card__overlay {
+  opacity: 1;
+}
+
+.cat-card__cta {
+  color: var(--color-text);
+  transform: translateY(8px);
+  transition: transform var(--dur-moderate) var(--ease-out-expo);
+}
+
+.cat-card__link:hover .cat-card__cta {
+  transform: translateY(0);
+}
+
+/* ── Info Row ────────────────────────────────── */
+.cat-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.cat-card__meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-1);
+}
+
+.cat-card__type {
+  color: var(--color-text-muted);
+}
+
+.cat-card__year {
+  color: var(--color-text-subtle);
+}
+
+.cat-card__title {
+  color: var(--color-text);
+  transition: color var(--dur-fast) var(--ease-out-expo);
+}
+
+.cat-card__link:hover .cat-card__title {
+  color: var(--color-accent);
+}
+
+.cat-card__desc {
+  color: var(--color-text-muted);
+  font-size: var(--text-body-sm);
+  margin-top: var(--space-1);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Video Grid ──────────────────────────────── */
+.cat-grid--video {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-12) var(--space-8);
+  align-items: start;
+}
+
+/* ── Video Card ──────────────────────────────── */
+.cat-card--video {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.cat-card__video-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-bg-elevated);
+  position: relative;
+}
+
+.cat-card__iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.cat-card__info--video .cat-card__title {
+  margin-bottom: var(--space-2);
+}
+
+.cat-card__info--video .cat-card__desc {
+  -webkit-line-clamp: 3; /* allow 3 lines for video descriptions */
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 1023px) {
+  .cat-grid--standard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cat-card--offset {
+    margin-top: var(--space-10);
+  }
+
+  .cat-grid--video {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}
+
+@media (max-width: 639px) {
+  .cat-grid--standard {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .cat-card--offset {
+    margin-top: 0;
+  }
+}
