@@ -72,10 +72,7 @@
   align-items: start;
 }
 
-/* Every 2nd card in middle column drops down */
-.brand-card--offset {
-  margin-top: var(--space-16);
-}
+
 
 /* ── Brand Card ──────────────────────────────── */
 .brand-card__link {
@@ -182,9 +179,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .brand-card--offset {
-    margin-top: var(--space-10);
-  }
+
 }
 
 @media (max-width: 639px) {
@@ -193,7 +188,5 @@
     gap: var(--space-10);
   }
 
-  .brand-card--offset {
-    margin-top: 0;
-  }
+
 }

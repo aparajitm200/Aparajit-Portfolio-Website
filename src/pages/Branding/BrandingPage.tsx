@@ -10,6 +10,7 @@ import { PageTransition } from '../../components/motion/PageTransition'
 import { brandingCategory } from '../../data/portfolio'
 import { gsap } from '../../animations/gsap'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { ProgressiveImage } from '../../components/ui/ProgressiveImage'
 import './BrandingPage.css'
 
 export function BrandingPage() {
@@ -79,31 +80,27 @@ interface BrandCardProps {
 }
 
 function BrandCard({ project, index }: BrandCardProps) {
-  const [imgError, setImgError] = useState(false)
-
-  // Alternate aspect ratios for editorial feel
-  const aspectRatios = ['4/3', '3/4', '1/1', '4/3', '3/4', '4/3', '1/1', '3/4', '4/3']
-  const aspectRatio = aspectRatios[index % aspectRatios.length]
+  const aspectRatio = '4/3' // Uniform aspect ratio for all cards
 
   return (
-    <article className={`brand-card brand-card--${index % 3 === 1 ? 'offset' : 'normal'}`}>
+    <article className="brand-card">
       <Link
         to={`/work/branding/${project.slug}`}
         className="brand-card__link"
         aria-label={`View ${project.title} project`}
       >
         {/* Image */}
-        <div className="brand-card__image-wrap" style={{ aspectRatio }}>
-          {project.thumbnailImage && !imgError ? (
-            <img
+        <div className="brand-card__image-wrap">
+          {project.thumbnailImage ? (
+            <ProgressiveImage
               src={`/${project.thumbnailImage}`}
               alt={`${project.title} thumbnail`}
+              aspectRatio={aspectRatio}
               className="brand-card__image"
-              onError={() => setImgError(true)}
               loading="lazy"
             />
           ) : (
-            <div className="brand-card__image img-placeholder" aria-label={`${project.title} placeholder`}>
+            <div className="brand-card__image img-placeholder" style={{ aspectRatio }} aria-label={`${project.title} placeholder`}>
               <span className="t-micro">{project.title}</span>
             </div>
           )}

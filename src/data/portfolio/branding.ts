@@ -53,7 +53,7 @@ export const brandingCategory: PortfolioCategory = {
       ],
     },
     {
-      slug: 'crobstacle-india',
+      slug: 'crobstacle',
       title: 'Crobstacle India',
       subtitle: 'Brand Identity & Event Design',
       type: 'Brand Identity',
@@ -85,7 +85,7 @@ export const brandingCategory: PortfolioCategory = {
       sections: [],
     },
     {
-      slug: 'gcode-health',
+      slug: 'gcode',
       title: 'gCODE Health',
       subtitle: 'Healthcare Brand Identity & Communication Design',
       type: 'Brand Identity',
@@ -117,7 +117,7 @@ export const brandingCategory: PortfolioCategory = {
       sections: [],
     },
     {
-      slug: 'cardiocure-clinic',
+      slug: 'cardiocure',
       title: 'CardioCureClinic',
       subtitle: 'Medical Brand Identity & Communication',
       type: 'Brand Identity',
