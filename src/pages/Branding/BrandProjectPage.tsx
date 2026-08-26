@@ -9,11 +9,73 @@ import { PageTransition } from '../../components/motion/PageTransition'
 import { getProjectBySlug } from '../../data/portfolio'
 import { ImagePlaceholder } from '../../components/ui/ImagePlaceholder'
 import { Tag } from '../../components/ui/Tag'
+import { ProgressiveImage } from '../../components/ui/ProgressiveImage'
+import { Masonry } from '../../components/ui/Masonry'
 import type { CategorySlug } from '../../types/portfolio'
+
+const ALL_BRAND_IMAGES = Object.keys(
+  import.meta.glob('/public/images/brands/**/*.{png,jpg,jpeg,webp,gif}', { eager: true })
+)
 
 export function BrandProjectPage() {
   const { projectSlug } = useParams<{ projectSlug: string }>()
   const project = getProjectBySlug('branding' as CategorySlug, projectSlug ?? '')
+
+  type SubSection = { title: string; images: string[] }
+  type Section = { title: string; description?: string; subsections: SubSection[], directImages: string[] }
+
+  // Group images by subfolder dynamically
+  const sectionsMap = new Map<string, { directImages: string[], subMap: Map<string, string[]> }>()
+  
+  if (project) {
+    const prefix = `/public/images/brands/${project.slug}/`
+    ALL_BRAND_IMAGES.forEach((path) => {
+      if (path.startsWith(prefix)) {
+        const relativePath = path.replace(prefix, '')
+        const parts = relativePath.split('/')
+        // Only include images that are inside subfolders
+        if (parts.length > 1) {
+          const sectionName = parts[0]
+          const imageUrl = path.replace('/public', '')
+          
+          if (!sectionsMap.has(sectionName)) {
+            sectionsMap.set(sectionName, { directImages: [], subMap: new Map() })
+          }
+          
+          const sectionData = sectionsMap.get(sectionName)!
+          
+          if (parts.length === 2) {
+            // It's a direct image in the level 1 folder
+            sectionData.directImages.push(imageUrl)
+          } else {
+            // It's in a sub-subsection (level 2)
+            const subName = parts[1]
+            if (!sectionData.subMap.has(subName)) {
+              sectionData.subMap.set(subName, [])
+            }
+            sectionData.subMap.get(subName)!.push(imageUrl)
+          }
+        }
+      }
+    })
+  }
+
+  const dynamicSections: Section[] = Array.from(sectionsMap.entries()).map(([title, data]) => {
+    // Find matching section in project.sections to inherit description
+    const matchingSection = project?.sections?.find(s => s.title.toLowerCase() === title.toLowerCase())
+    
+    const subsections: SubSection[] = Array.from(data.subMap.entries()).map(([subTitle, images]) => ({
+      title: subTitle,
+      images
+    }))
+
+    return {
+      title,
+      description: matchingSection?.description,
+      directImages: data.directImages,
+      subsections
+    }
+  })
 
   if (!project) {
     return (
@@ -79,15 +141,6 @@ export function BrandProjectPage() {
           </header>
         </div>
 
-        {/* Hero Image */}
-        <div style={{ marginBottom: 'var(--space-16)' }}>
-          <ImagePlaceholder
-            label={`${project.title} — Hero Image`}
-            aspectRatio="16/9"
-            className="container"
-          />
-        </div>
-
         {/* Description */}
         <div className="container" style={{ marginBottom: 'var(--space-16)' }}>
           <div
@@ -114,42 +167,77 @@ export function BrandProjectPage() {
           </div>
         </div>
 
-        {/* Sections */}
-        {project.sections && project.sections.length > 0 && (
+        {/* Dynamic Sections */}
+        {dynamicSections.length > 0 && (
           <div style={{ marginBottom: 'var(--space-24)' }}>
-            {project.sections.map((section) => (
+            {dynamicSections.map((section, idx) => (
               <section
-                key={section.id}
-                style={{ marginBottom: 'var(--space-16)', paddingTop: 'var(--space-8)', borderTop: '1px solid var(--color-border)' }}
+                key={idx}
+                style={{ marginBottom: 'var(--space-24)' }}
               >
-                <div className="container">
-                  <h2 className="t-heading-md" style={{ marginBottom: 'var(--space-4)' }}>
+                <div className="container" style={{ marginBottom: 'var(--space-12)' }}>
+                  <h2 className="t-heading-lg" style={{ marginBottom: 'var(--space-4)' }}>
                     {section.title}
                   </h2>
                   {section.description && (
-                    <p className="t-body-md" style={{ color: 'var(--color-text-muted)', maxWidth: '60ch', marginBottom: 'var(--space-8)' }}>
+                    <p className="t-body-md" style={{ color: 'var(--color-text-muted)', maxWidth: '60ch' }}>
                       {section.description}
                     </p>
                   )}
-                  {/* Images will be populated when assets arrive */}
-                  {(!section.images || section.images.length === 0) && (
-                    <div
-                      style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-                        gap: 'var(--grid-gap)',
-                      }}
-                    >
-                      {[1, 2, 3].map((i) => (
-                        <ImagePlaceholder
+                </div>
+
+                {/* Level 1 Direct Images */}
+                {section.directImages.length > 0 && (
+                  <div className="container" style={{ marginBottom: 'var(--space-16)' }}>
+                    <Masonry gap="var(--space-8)">
+                      {section.directImages.map((imgSrc, i) => (
+                        <ProgressiveImage
                           key={i}
-                          label={`${section.title} — ${i}`}
-                          aspectRatio="4/3"
+                          src={imgSrc}
+                          alt={`${section.title} Direct Image ${i + 1}`}
+                          style={{
+                            width: '100%',
+                            height: 'auto',
+                            borderRadius: 'var(--radius-md)',
+                            display: 'block',
+                            minHeight: '200px'
+                          }}
+                          loading="lazy"
                         />
                       ))}
-                    </div>
-                  )}
-                </div>
+                    </Masonry>
+                  </div>
+                )}
+
+                {/* Level 2 Sub-Sections */}
+                {section.subsections.length > 0 && (
+                  <div className="container">
+                    {section.subsections.map((sub, subIdx) => (
+                      <div key={subIdx} style={{ marginBottom: 'var(--space-16)' }}>
+                        <h3 className="t-heading-md" style={{ marginBottom: 'var(--space-6)' }}>
+                          {sub.title}
+                        </h3>
+                        <Masonry gap="var(--space-8)">
+                          {sub.images.map((imgSrc, i) => (
+                            <ProgressiveImage
+                              key={i}
+                              src={imgSrc}
+                              alt={`${sub.title} Image ${i + 1}`}
+                              style={{
+                                width: '100%',
+                                height: 'auto',
+                                borderRadius: 'var(--radius-md)',
+                                display: 'block',
+                                minHeight: '200px'
+                              }}
+                              loading="lazy"
+                            />
+                          ))}
+                        </Masonry>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </section>
             ))}
           </div>

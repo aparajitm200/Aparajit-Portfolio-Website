@@ -6,65 +6,6 @@
 
 import type { PortfolioCategory } from '../../types/portfolio'
 
-export const uiuxCategory: PortfolioCategory = {
-  slug: 'ui-ux',
-  title: 'UI/UX',
-  displayTitle: 'UI/UX Design',
-  description:
-    'Interface design, user experience, and product design — from wireframes to polished high-fidelity prototypes.',
-  shortDescription: 'Interface design & user experience',
-  comingSoon: false,
-  projects: [
-    {
-      slug: 'fintech-dashboard',
-      title: 'Fintech Dashboard',
-      subtitle: 'UX Research & UI Design',
-      type: 'Product Design',
-      description: 'A comprehensive financial dashboard designed for modern wealth management.',
-      shortDescription: 'Financial dashboard UX/UI',
-      heroImage: 'images/uiux/img-1.jpg',
-      thumbnailImage: 'images/uiux/img-1.jpg',
-      year: 2024,
-      tags: ['UI', 'UX', 'Fintech'],
-    },
-    {
-      slug: 'ecommerce-app',
-      title: 'Retail Commerce App',
-      subtitle: 'Mobile App Design',
-      type: 'Mobile UI',
-      description: 'A sleek, conversion-optimized mobile app for an e-commerce fashion brand.',
-      shortDescription: 'Fashion e-commerce mobile app',
-      heroImage: 'images/uiux/img-2.jpg',
-      thumbnailImage: 'images/uiux/img-2.jpg',
-      year: 2024,
-      tags: ['Mobile', 'App Design', 'Retail'],
-    },
-    {
-      slug: 'saas-platform',
-      title: 'SaaS Platform Redesign',
-      subtitle: 'Enterprise UX',
-      type: 'Web Application',
-      description: 'Redesigning a complex B2B SaaS platform for improved usability and workflow efficiency.',
-      shortDescription: 'Enterprise SaaS platform UX redesign',
-      heroImage: 'images/uiux/img-3.jpg',
-      thumbnailImage: 'images/uiux/img-3.jpg',
-      year: 2023,
-      tags: ['SaaS', 'B2B', 'UX Research'],
-    },
-    {
-      slug: 'health-tracker',
-      title: 'Health & Wellness Tracker',
-      subtitle: 'Concept Design',
-      type: 'Concept UI',
-      description: 'An exploration into gamified health tracking interfaces.',
-      shortDescription: 'Gamified wellness tracker concept',
-      heroImage: 'images/uiux/img-4.jpg',
-      thumbnailImage: 'images/uiux/img-4.jpg',
-      year: 2023,
-      tags: ['Concept', 'Health', 'Gamification'],
-    },
-  ],
-}
 
 export const videoEditingCategory: PortfolioCategory = {
   slug: 'video-editing',

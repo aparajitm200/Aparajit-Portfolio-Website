@@ -6,8 +6,8 @@
 
 import type { PortfolioData, CategoryLookup, CategorySlug } from '../../types/portfolio'
 import { brandingCategory } from './branding'
+import { uiuxCategory } from './uiux'
 import {
-  uiuxCategory,
   videoEditingCategory,
   animationCategory,
   otherCategory,

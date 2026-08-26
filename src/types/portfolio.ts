@@ -12,13 +12,13 @@ export type CategorySlug =
   | 'other'
 
 // A "section" inside a project page
-// (e.g. "Meta Advertisement Designs" inside /work/branding/beautyxtasy)
 export interface ProjectSection {
   id: string
   title: string
   description?: string
   images?: string[]
-  layout?: 'grid' | 'masonry' | 'fullwidth' | 'editorial'
+  layout?: 'default' | 'cinematic-overview' | 'insight-quote' | 'bento-stats' | 'flow-steps' | 'design-system' | 'grid' | 'editorial' | 'masonry' | 'gallery'
+  contentData?: any // Flexible payload for specific block data
 }
 
 // A single brand / deliverable project
