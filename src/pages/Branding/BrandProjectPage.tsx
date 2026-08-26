@@ -7,7 +7,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { PageTransition } from '../../components/motion/PageTransition'
 import { getProjectBySlug } from '../../data/portfolio'
-import { ImagePlaceholder } from '../../components/ui/ImagePlaceholder'
 import { Tag } from '../../components/ui/Tag'
 import { ProgressiveImage } from '../../components/ui/ProgressiveImage'
 import { Masonry } from '../../components/ui/Masonry'

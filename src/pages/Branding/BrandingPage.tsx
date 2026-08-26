@@ -4,7 +4,7 @@
 //  with real images, editorial layout.
 // ─────────────────────────────────────────────
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { PageTransition } from '../../components/motion/PageTransition'
 import { brandingCategory } from '../../data/portfolio'
@@ -59,8 +59,8 @@ export function BrandingPage() {
         <section className="brand-grid-section">
           <div className="container">
             <div className="brand-grid">
-              {brandingCategory.projects.map((project, i) => (
-                <BrandCard key={project.slug} project={project} index={i} />
+              {brandingCategory.projects.map((project) => (
+                <BrandCard key={project.slug} project={project} />
               ))}
             </div>
           </div>
@@ -76,10 +76,9 @@ export function BrandingPage() {
 // ─────────────────────────────────────────────
 interface BrandCardProps {
   project: (typeof brandingCategory.projects)[number]
-  index: number
 }
 
-function BrandCard({ project, index }: BrandCardProps) {
+function BrandCard({ project }: BrandCardProps) {
   const aspectRatio = '4/3' // Uniform aspect ratio for all cards
 
   return (
