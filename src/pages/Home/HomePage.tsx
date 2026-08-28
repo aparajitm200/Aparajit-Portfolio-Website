@@ -17,12 +17,26 @@ import { PageTransition } from '../../components/motion/PageTransition'
 import { brandingCategory } from '../../data/portfolio'
 import { gsap } from '../../animations/gsap'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
+import { Carousel } from '../../components/ui/Carousel'
 import './HomePage.css'
 
 // ── Featured project — primary spotlight ──────
 const FEATURED_PROJECT = brandingCategory.projects.find(
-  (p) => p.slug === 'crobstacle-india'
+  (p) => p.slug === 'crobstacle'
 ) ?? brandingCategory.projects[0]
+
+const FEATURED_CAROUSEL_IMAGES = [
+  '/images/brands/crobstacle/Creatives/File-23(6).png',
+  '/images/brands/crobstacle/Creatives/File-26(5).png',
+  '/images/brands/crobstacle/Creatives/File-11(16).png',
+  '/images/brands/crobstacle/Creatives/File-12(9).png',
+  '/images/brands/crobstacle/Creatives/File-14(5).png',
+  '/images/brands/crobstacle/Creatives/File-19(5).png',
+  '/images/brands/crobstacle/Creatives/File-19(7).png',
+  '/images/brands/crobstacle/Creatives/File-20(9).png',
+  '/images/brands/crobstacle/Creatives/File-8(24).png',
+  '/images/brands/crobstacle/Creatives/File-27(5).png',
+]
 
 // ── Work preview — next 4 projects ───────────
 const PREVIEW_PROJECTS = brandingCategory.projects
@@ -53,6 +67,7 @@ export function HomePage() {
   const headlineRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const ctaRef      = useRef<HTMLDivElement>(null)
+  const imageRef    = useRef<HTMLImageElement>(null)
   const scrollRef   = useRef<HTMLDivElement>(null)
 
   // ── Parallax on scroll ────────────────────────
@@ -84,6 +99,10 @@ export function HomePage() {
         y: 16, opacity: 0, duration: 0.6, ease: 'power3.out',
       }, '-=0.45')
 
+      tl.from(imageRef.current, {
+        opacity: 0, scale: 0.95, duration: 0.8, ease: 'power3.out'
+      }, '-=0.6')
+
       tl.from(scrollRef.current, {
         opacity: 0, duration: 0.5, ease: 'power2.out',
       }, '-=0.2')
@@ -103,32 +122,42 @@ export function HomePage() {
           className="home-hero__content container"
           style={{ y: heroY, opacity: heroOpacity }}
         >
-          <p ref={metaRef} className="home-hero__meta t-meta">
-            Visual Designer · Based in India
-          </p>
+          <div className="home-hero__text-col">
+            <p ref={metaRef} className="home-hero__meta t-meta">
+              Visual Designer · Based in India
+            </p>
 
-          {/* Headline — word-split for per-word GSAP reveal */}
-          <h1 ref={headlineRef} className="home-hero__title t-display-xl">
-            {['Aparajit', 'Singh'].map((word) => (
-              <span key={word} className="word-wrapper">
-                <span className="word">{word}</span>
-              </span>
-            ))}
-            <span className="sr-only">Aparajit Singh</span>
-          </h1>
+            {/* Headline — word-split for per-word GSAP reveal */}
+            <h1 ref={headlineRef} className="home-hero__title t-display-xl">
+              {['Aparajit', 'Singh'].map((word) => (
+                <span key={word} className="word-wrapper">
+                  <span className="word">{word}</span>
+                </span>
+              ))}
+              <span className="sr-only">Aparajit Singh</span>
+            </h1>
 
-          <p ref={subtitleRef} className="home-hero__subtitle t-body-lg">
-            Crafting identity, interface &amp; motion —<br />
-            one deliberate decision at a time.
-          </p>
+            <p ref={subtitleRef} className="home-hero__subtitle t-body-lg">
+              I'm a visual designer who enjoys transforming ideas into bold, engaging, and memorable visual experiences. My work moves across branding, digital design, UI/UX, motion, and creative experimentation.
+            </p>
 
-          <div ref={ctaRef} className="home-hero__cta">
-            <Link to="/work" className="btn btn--primary home-cta-btn" aria-label="View selected work">
-              View Work
-            </Link>
-            <Link to="/about" className="btn btn--ghost home-cta-btn" aria-label="About me">
-              About Me
-            </Link>
+            <div ref={ctaRef} className="home-hero__cta">
+              <Link to="/work" className="btn btn--primary home-cta-btn" aria-label="View selected work">
+                View Work
+              </Link>
+              <Link to="/about" className="btn btn--ghost home-cta-btn" aria-label="About me">
+                About Me
+              </Link>
+            </div>
+          </div>
+          
+          <div className="home-hero__image-col">
+            <img 
+              ref={imageRef}
+              src="/images/profile.png" 
+              alt="Aparajit Singh" 
+              className="home-hero__profile-img-large" 
+            />
           </div>
         </motion.div>
 
@@ -213,35 +242,14 @@ function FeaturedSection() {
           {/* Left — large image */}
           <div className="featured__image-col">
             <div className="featured__image-wrap">
-              {FEATURED_PROJECT.heroImage ? (
-                <img
-                  src={`/${FEATURED_PROJECT.heroImage}`}
-                  alt={`${FEATURED_PROJECT.title} — featured project`}
-                  className="featured__image featured__image--real"
-                  loading="eager"
-                />
-              ) : (
-                <div
-                  className="featured__image img-placeholder"
-                  role="img"
-                  aria-label={`${FEATURED_PROJECT.title} featured image`}
-                >
-                  <span className="t-micro" style={{ color: 'var(--color-text-subtle)' }}>
-                    {FEATURED_PROJECT.title}
-                  </span>
-                </div>
-              )}
-              {/* Floating project index badge */}
-              <div className="featured__badge" aria-hidden="true">
-                <span className="t-micro">01 / {brandingCategory.projects.length.toString().padStart(2, '0')}</span>
-              </div>
+              <Carousel images={FEATURED_CAROUSEL_IMAGES} interval={4000} />
             </div>
           </div>
 
           {/* Right — project info */}
           <div className="featured__body">
             <span className="featured__project-tag t-meta">
-              {FEATURED_PROJECT.type}
+              Visual Brand Communication
             </span>
 
             <h2 className="featured__title t-display-md">
@@ -249,17 +257,15 @@ function FeaturedSection() {
             </h2>
 
             <p className="featured__desc t-body-lg">
-              {FEATURED_PROJECT.description}
+              Conceptual branding, podcast covers, and brand awareness creatives for Crobstacle India, using visual storytelling, cinematic compositions, and technology-inspired design to communicate digital marketing expertise and build a distinctive, cohesive brand presence across social media.
             </p>
 
             {/* Meta pills */}
-            {FEATURED_PROJECT.tools && (
-              <div className="featured__tools">
-                {FEATURED_PROJECT.tools.map((tool) => (
-                  <span key={tool} className="tag">{tool}</span>
-                ))}
-              </div>
-            )}
+            <div className="featured__tools">
+              {['Adobe Photoshop', 'Canva', 'Adobe Illustrator'].map((tool) => (
+                <span key={tool} className="tag">{tool}</span>
+              ))}
+            </div>
 
             <Link
               to={`/work/branding/${FEATURED_PROJECT.slug}`}
@@ -272,18 +278,13 @@ function FeaturedSection() {
             {/* Stats row */}
             <div className="featured__stats" aria-label="Project details">
               <div className="featured__stat">
-                <span className="featured__stat-value t-heading-sm">8</span>
-                <span className="featured__stat-label t-micro">Projects</span>
+                <span className="featured__stat-value t-heading-sm">50+</span>
+                <span className="featured__stat-label t-micro">Creatives</span>
               </div>
               <div className="featured__stat-divider" aria-hidden="true" />
               <div className="featured__stat">
-                <span className="featured__stat-value t-heading-sm">2024</span>
+                <span className="featured__stat-value t-heading-sm">2026</span>
                 <span className="featured__stat-label t-micro">Year</span>
-              </div>
-              <div className="featured__stat-divider" aria-hidden="true" />
-              <div className="featured__stat">
-                <span className="featured__stat-value t-heading-sm">Branding</span>
-                <span className="featured__stat-label t-micro">Category</span>
               </div>
             </div>
           </div>
