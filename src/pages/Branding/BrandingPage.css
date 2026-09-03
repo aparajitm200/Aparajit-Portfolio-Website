@@ -87,7 +87,6 @@
   overflow: hidden;
   border-radius: var(--radius-md);
   margin-bottom: var(--space-4);
-  background: var(--color-bg-elevated);
 }
 
 .brand-card__image {

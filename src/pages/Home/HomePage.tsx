@@ -14,7 +14,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { PageTransition } from '../../components/motion/PageTransition'
-import { brandingCategory } from '../../data/portfolio'
+import { brandingCategory, uiuxCategory } from '../../data/portfolio'
 import { gsap } from '../../animations/gsap'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 import { Carousel } from '../../components/ui/Carousel'
@@ -38,10 +38,13 @@ const FEATURED_CAROUSEL_IMAGES = [
   '/images/brands/crobstacle/Creatives/File-27(5).png',
 ]
 
-// ── Work preview — next 4 projects ───────────
-const PREVIEW_PROJECTS = brandingCategory.projects
-  .filter((p) => p.slug !== FEATURED_PROJECT.slug)
-  .slice(0, 4)
+// ── Work preview — selected projects ───────────
+const PREVIEW_PROJECTS = [
+  { ...brandingCategory.projects.find(p => p.slug === 'skincanberra')!, category: 'branding' },
+  { ...brandingCategory.projects.find(p => p.slug === 'jyotsana-classes')!, category: 'branding' },
+  { ...uiuxCategory.projects.find(p => p.slug === 'circle-one')!, category: 'ui-ux' },
+  { ...brandingCategory.projects.find(p => p.slug === 'gcode')!, category: 'branding' },
+]
 
 // ── Discipline ticker items ───────────────────
 const DISCIPLINES = [
@@ -357,7 +360,7 @@ function SelectedWorkSection() {
           </div>
           <div className="work-section__title-row">
             <h2 className="t-display-md work-section__title">
-              Branding &amp;<br />Visual Design
+              Campaigns and<br />Visual Designs
             </h2>
             <Link to="/work" className="work-section__view-all t-meta btn btn--secondary" aria-label="View all work">
               View All Work →
@@ -382,7 +385,7 @@ function SelectedWorkSection() {
 }
 
 interface WorkCardProps {
-  project: (typeof brandingCategory.projects)[number]
+  project: any
   index: number
 }
 
@@ -395,7 +398,7 @@ function WorkCard({ project, index }: WorkCardProps) {
       role="listitem"
     >
       <Link
-        to={`/work/branding/${project.slug}`}
+        to={`/work/${project.category}/${project.slug}`}
         className="work-card__link"
         aria-label={`View ${project.title} project`}
       >

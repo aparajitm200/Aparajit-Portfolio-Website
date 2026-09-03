@@ -498,12 +498,10 @@
 
 /* Portrait cards (even index) — taller */
 .work-card--portrait .work-card__image {
-  aspect-ratio: 3 / 4;
 }
 
 /* Landscape cards (odd index) — wider */
 .work-card--landscape .work-card__image {
-  aspect-ratio: 4 / 3;
 }
 
 /* Offset: first landscape card drops down visually */
@@ -534,8 +532,6 @@
 
 /* Real image */
 .work-card__image--real {
-  height: 100%;
-  object-fit: cover;
   object-position: center;
   display: block;
 }

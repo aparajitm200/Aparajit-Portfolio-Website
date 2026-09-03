@@ -59,7 +59,10 @@ export function BrandingPage() {
         <section className="brand-grid-section">
           <div className="container">
             <div className="brand-grid">
-              {brandingCategory.projects.map((project) => (
+              {[
+                ...brandingCategory.projects.filter(p => p.slug !== 'dr-rich-melheim'),
+                ...brandingCategory.projects.filter(p => p.slug === 'dr-rich-melheim')
+              ].map((project) => (
                 <BrandCard key={project.slug} project={project} />
               ))}
             </div>
@@ -79,8 +82,6 @@ interface BrandCardProps {
 }
 
 function BrandCard({ project }: BrandCardProps) {
-  const aspectRatio = '4/3' // Uniform aspect ratio for all cards
-
   return (
     <article className="brand-card">
       <Link
@@ -94,12 +95,11 @@ function BrandCard({ project }: BrandCardProps) {
             <ProgressiveImage
               src={`/${project.thumbnailImage}`}
               alt={`${project.title} thumbnail`}
-              aspectRatio={aspectRatio}
               className="brand-card__image"
               loading="lazy"
             />
           ) : (
-            <div className="brand-card__image img-placeholder" style={{ aspectRatio }} aria-label={`${project.title} placeholder`}>
+            <div className="brand-card__image img-placeholder" aria-label={`${project.title} placeholder`}>
               <span className="t-micro">{project.title}</span>
             </div>
           )}
